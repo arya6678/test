@@ -5,9 +5,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    
     strategy:
-      max-parallel: 10
       matrix:
         tag: ['${RUN}', 'latest']
         run: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -22,7 +20,7 @@ jobs:
 
       - name: Create a Dockerfile
         run: |
-          echo 'FROM mongo' > Dockerfile
+          echo 'FROM node' > Dockerfile
           echo 'ENTRYPOINT ["echo", "Hello from ${{ github.repository }}!"] How are you?' >> Dockerfile
           echo 'LABEL org.opencontainers.image.description "This image was built from commit ${{ github.sha }}"' >> Dockerfile
       - name: Build image
